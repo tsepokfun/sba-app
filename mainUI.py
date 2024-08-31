@@ -25,9 +25,19 @@ class StartPage(tk.Frame):
         super().__init__(master)
         def hits0() :
             DecryptorUI.DQer0()
+        def hits1() :
+            DecryptorUI.info0()
+        def hits2() :
+            DecryptorUI.DQer1()
+        def hits3() :
+            DecryptorUI.info1()
         tk.Label(self, text = "解密器", padx = 40, pady = 15, font = ('Times New Roman', 15, 'bold')).grid(row = 0, column = 1)
         tk.Button(self, text = "加密器", padx = 40, pady = 15, command = lambda: master.switch_frame(PageOne)).grid(row = 0, column = 0)
-        tk.Button(self, text = "字典方法解密", padx = 30, pady = 10, command = hits0).grid(row = 2, column = 1)
+        tk.Button(self, text = "字典法解密", padx = 30, pady = 10, command = hits0).grid(row = 2, column = 1)
+        tk.Button(self, text = "原理->", padx = 10, pady = 10, command = hits1).grid(row = 2, column = 0)
+        tk.Button(self, text = "單字頻數法解密", padx = 18, pady = 10, command = hits2).grid(row = 3, column = 1)
+        tk.Button(self, text = "原理->", padx = 10, pady = 10, command = hits3).grid(row = 3, column = 0)
+
         tk.Label(self, text = " ", padx = 40, pady = 15).grid(row = 1)
 
 

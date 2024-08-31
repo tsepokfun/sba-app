@@ -4,3 +4,5 @@ import EncryptorUI
 import DecryptorUI
 from tkinter import filedialog
 
+def showresult(pw) :
+    

@@ -9,15 +9,11 @@ temp = open("wiki-100k.txt")
 t = temp.readlines()
 rank = 0
 dictionary = {}
-tttt = []
 for i in t :
-    if i[:len(i) - 2].upper() in dictionary :
-        print(rank, dictionary.get(i[:len(i) - 2].upper()))
     dictionary[i[:len(i) - 2].upper()] = rank
     rank += 1
-    tttt.append(i[:len(i) - 2].upper())
     
-print(len(dictionary), len(set(tttt)))
+print("words in dictionary = "+str(len(dictionary)))
 #ditionary created
 #lot of same word
 #no hash collision
@@ -136,18 +132,22 @@ def Return_KWordFrewuencyMethod (nul) : # as the name :) #in w type #not null
 
 class pre_proess_word :
     def __init__(self, w) :
+        #text proess
         self.w = w
         self.Asciiw = Return_WordToAscii(self.w)
         self.Vocabw = Return_CombinWordToVocab(self.Asciiw)
-        self.wordFrequency = Return_wordFrequency(self.Asciiw)
         print(self.Asciiw)
+        #Method00 dictionary
         t = Return_OriganalArticleDictionaryMethod(self.Asciiw) 
         self.DictionaryMethodOriganArticle = t[0]
         self.DictionaryMethodKValue = 26 - t[1]
         self.DictionaryMethodPossiblity = t[2]
-        print(t)
+        #Method01 fequency
+        self.wordFrequency = Return_wordFrequency(self.Asciiw)
         self.WordFrewuencyMethodKValue = Return_KWordFrewuencyMethod(self.Asciiw)
         self.WordFrewuencyMethodOriganArticle = Return_AsciiToPrintableWord(Return_AsciiNumberPuseK(self.Asciiw, self.WordFrewuencyMethodKValue))
+        print(self.WordFrewuencyMethodOriganArticle)
+        
 
 a = pre_proess_word(["JGNNQ YQTNF"])
 print(a.DictionaryMethodOriganArticle)
