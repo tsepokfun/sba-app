@@ -31,7 +31,7 @@ def EQer0() :
     w = tk.Tk()
     w.title("「位移加密法」加密器")
 
-    FileShowingBox = tk.StringVar()
+    FileShowingBox = tk.StringVar(w)
 
     KValueString = tk.Label(w, text = "k值" , width = 25, height  = 2)
     optionList = []

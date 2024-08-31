@@ -1,19 +1,32 @@
+import tkinter as tk
+import ALG
+import EncryptorUI
+import DecryptorUI
+from tkinter import filedialog
 
 #ditionary create
 temp = open("wiki-100k.txt")
-t = temp.readline()
+t = temp.readlines()
 rank = 0
-dictionary = {t[:len(t) - 1].upper(): rank}
-a = len(t[:len(t) - 1])
-while t != "" :
-    dictionary[t[:len(t) - 1].upper()] = rank
-    t = temp.readline()
+dictionary = {}
+tttt = []
+for i in t :
+    if i[:len(i) - 2].upper() in dictionary :
+        print(rank, dictionary.get(i[:len(i) - 2].upper()))
+    dictionary[i[:len(i) - 2].upper()] = rank
     rank += 1
-    if a < len(t[:len(t) - 1]) :
-        a = len(t[:len(t) - 1])
-        b = t
-print(a, b)
+    tttt.append(i[:len(i) - 2].upper())
+    
+print(len(dictionary), len(set(tttt)))
 #ditionary created
+#lot of same word
+#no hash collision
+"""
+for i in t :
+    if i[:len(i) - 2].upper() in dictionary :
+        print(rank, dictionary.get(i[:len(i) - 2].upper()))
+"""
+#this can use to check
 
 def Return_WordToAscii (pw) : #return word to ascii id
 
@@ -109,7 +122,7 @@ def Return_OriganalArticleDictionaryMethod (nul) : # as the name :) #in w type #
                         vid += 1 
         pboK.append(vid/v)
     k = pboK.index(max(pboK))
-    return Return_AsciiToPrintableWord(Return_AsciiNumberPuseK(nul, k)), k, pboK
+    return [Return_AsciiToPrintableWord(Return_AsciiNumberPuseK(nul, k)), k, pboK]
 
 def Return_KWordFrewuencyMethod (nul) : # as the name :) #in w type #not null
     cpl = Return_wordFrequency(nul)
@@ -132,6 +145,7 @@ class pre_proess_word :
         self.DictionaryMethodOriganArticle = t[0]
         self.DictionaryMethodKValue = 26 - t[1]
         self.DictionaryMethodPossiblity = t[2]
+        print(t)
         self.WordFrewuencyMethodKValue = Return_KWordFrewuencyMethod(self.Asciiw)
         self.WordFrewuencyMethodOriganArticle = Return_AsciiToPrintableWord(Return_AsciiNumberPuseK(self.Asciiw, self.WordFrewuencyMethodKValue))
 
@@ -139,30 +153,16 @@ a = pre_proess_word(["JGNNQ YQTNF"])
 print(a.DictionaryMethodOriganArticle)
 
 """
-#!comment: This is a list of the top 100,000 most frequently-used English words
-#!comment: according to Wiktionary.
-#!comment:
-#!comment: It was compiled in August 2005 and coalesced into a handy list for
-#!comment: use in John the Ripper.
-#!comment:
-#!comment:
-#!comment: Pull date: Sun Jan 15 22:03:54 2012 GMT
-#!comment:
-#!comment: Sources:
-#!comment:
-#!comment: http://en.wiktionary.org/wiki/Wiktionary:Frequency_lists#Top_English_words_lists
-#!comment: http://en.wiktionary.org/wiki/Wiktionary:Frequency_lists/PG/2005/08/1-10000
-#!comment: http://en.wiktionary.org/wiki/Wiktionary:Frequency_lists/PG/2005/08/10001-20000
-#!comment: http://en.wiktionary.org/wiki/Wiktionary:Frequency_lists/PG/2005/08/20001-30000
-#!comment: http://en.wiktionary.org/wiki/Wiktionary:Frequency_lists/PG/2005/08/30001-40000
-#!comment: http://en.wiktionary.org/wiki/Wiktionary:Frequency_lists/PG/2005/08/40001-50000
-#!comment: http://en.wiktionary.org/wiki/Wiktionary:Frequency_lists/PG/2005/08/50001-60000
-#!comment: http://en.wiktionary.org/wiki/Wiktionary:Frequency_lists/PG/2005/08/60001-70000
-#!comment: http://en.wiktionary.org/wiki/Wiktionary:Frequency_lists/PG/2005/08/70001-80000
-#!comment: http://en.wiktionary.org/wiki/Wiktionary:Frequency_lists/PG/2005/08/80001-90000
-#!comment: http://en.wiktionary.org/wiki/Wiktionary:Frequency_lists/PG/2005/08/90001-100000
-#!comment:
-#!comment: Compiled by h3xx
-#!comment:
-#!comment: 1 - 100
+Sources:
+http://en.wiktionary.org/wiki/Wiktionary:Frequency_lists#Top_English_words_lists
+http://en.wiktionary.org/wiki/Wiktionary:Frequency_lists/PG/2005/08/1-10000
+http://en.wiktionary.org/wiki/Wiktionary:Frequency_lists/PG/2005/08/10001-20000
+http://en.wiktionary.org/wiki/Wiktionary:Frequency_lists/PG/2005/08/20001-30000
+http://en.wiktionary.org/wiki/Wiktionary:Frequency_lists/PG/2005/08/30001-40000
+http://en.wiktionary.org/wiki/Wiktionary:Frequency_lists/PG/2005/08/40001-50000
+http://en.wiktionary.org/wiki/Wiktionary:Frequency_lists/PG/2005/08/50001-60000
+http://en.wiktionary.org/wiki/Wiktionary:Frequency_lists/PG/2005/08/60001-70000
+http://en.wiktionary.org/wiki/Wiktionary:Frequency_lists/PG/2005/08/70001-80000
+http://en.wiktionary.org/wiki/Wiktionary:Frequency_lists/PG/2005/08/80001-90000
+http://en.wiktionary.org/wiki/Wiktionary:Frequency_lists/PG/2005/08/90001-100000
 """

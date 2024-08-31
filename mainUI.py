@@ -23,11 +23,11 @@ class App(tk.Tk):
 class StartPage(tk.Frame):
     def __init__(self, master):
         super().__init__(master)
-        def hits() :
+        def hits0() :
             DecryptorUI.DQer0()
         tk.Label(self, text = "解密器", padx = 40, pady = 15, font = ('Times New Roman', 15, 'bold')).grid(row = 0, column = 1)
         tk.Button(self, text = "加密器", padx = 40, pady = 15, command = lambda: master.switch_frame(PageOne)).grid(row = 0, column = 0)
-        tk.Button(self, text = "字典方法解密", padx = 30, pady = 10, command = hits).grid(row = 2, column = 1)
+        tk.Button(self, text = "字典方法解密", padx = 30, pady = 10, command = hits0).grid(row = 2, column = 1)
         tk.Label(self, text = " ", padx = 40, pady = 15).grid(row = 1)
 
 
@@ -35,12 +35,12 @@ class StartPage(tk.Frame):
 class PageOne(tk.Frame):
     def __init__(self, master):
         super().__init__(master)
-        def hits() :
+        def hits0() :
             EncryptorUI.EQer0()
         tk.Label(self, text = "加密器", padx = 40, pady = 15,  font = ('Times New Roman', 15, 'bold')).grid(row = 0, column = 0)
         tk.Button(self, text  = "解密器", padx = 40, pady = 15, command = lambda: master.switch_frame(StartPage)).grid(row = 0, column = 1)
         tk.Label(self, text = " ", padx = 40, pady = 15).grid(row = 1)
-        tk.Button(self, text = "位移方法加密", padx = 30, pady = 10, command = hits).grid(row = 2)
+        tk.Button(self, text = "位移方法加密", padx = 30, pady = 10, command = hits0).grid(row = 2)
 if __name__ == "__main__":
     app = App()
     app.mainloop()
