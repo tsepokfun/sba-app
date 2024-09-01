@@ -67,7 +67,7 @@ def DQer1() :
         a = ALG.pre_proess_word(temp)
         print(a)
         ttt = ""
-        for i in a.DictionaryMethodOriganArticle :
+        for i in a.WordFrewuencyMethodOriganArticle :
             ttt += i
         FileShowingBox.set(ttt)
 
@@ -100,6 +100,6 @@ def info0() :
 def info1() :
     w = tk.Tk()
     w.title("單字頻數解密器原理")
-    tk.Label(w, text = "透過統計單字頻數，得出字位移值\n解密速度：O(n)\n\n*數據量足夠時，可透過區間採樣法，下降解密速度至：O(n/k)（k = 區間採樣率）", padx = 40, pady = 15, font = ('Times New Roman', 15, 'bold')).grid(row = 2)
+    tk.Label(w, text = "透過統計單字頻數，得出位移值\n解密速度：O(n)\n\n*數據量足夠時，可透過區間採樣法，下降解密速度至：O(n/k)（k = 區間採樣率）", padx = 40, pady = 15, font = ('Times New Roman', 15, 'bold')).grid(row = 2)
     
     w.mainloop()

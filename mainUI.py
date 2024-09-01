@@ -35,7 +35,7 @@ class StartPage(tk.Frame):
         tk.Button(self, text = "加密器", padx = 40, pady = 15, command = lambda: master.switch_frame(PageOne)).grid(row = 0, column = 0)
         tk.Button(self, text = "字典法解密", padx = 30, pady = 10, command = hits0).grid(row = 2, column = 1)
         tk.Button(self, text = "原理->", padx = 10, pady = 10, command = hits1).grid(row = 2, column = 0)
-        tk.Button(self, text = "單字頻數法解密", padx = 18, pady = 10, command = hits2).grid(row = 3, column = 1)
+        tk.Button(self, text = "單字頻數法解密", padx = 15, pady = 10, command = hits2).grid(row = 3, column = 1)
         tk.Button(self, text = "原理->", padx = 10, pady = 10, command = hits3).grid(row = 3, column = 0)
 
         tk.Label(self, text = " ", padx = 40, pady = 15).grid(row = 1)
@@ -47,10 +47,13 @@ class PageOne(tk.Frame):
         super().__init__(master)
         def hits0() :
             EncryptorUI.EQer0()
+        def hits1() :
+            EncryptorUI.info0()
         tk.Label(self, text = "加密器", padx = 40, pady = 15,  font = ('Times New Roman', 15, 'bold')).grid(row = 0, column = 0)
         tk.Button(self, text  = "解密器", padx = 40, pady = 15, command = lambda: master.switch_frame(StartPage)).grid(row = 0, column = 1)
         tk.Label(self, text = " ", padx = 40, pady = 15).grid(row = 1)
-        tk.Button(self, text = "位移方法加密", padx = 30, pady = 10, command = hits0).grid(row = 2)
+        tk.Button(self, text = "位移方法加密", padx = 30, pady = 10, command = hits0).grid(row = 2, column = 0)
+        tk.Button(self, text = "<-原理", padx = 10, pady = 10, command = hits1).grid(row = 2, column = 1)
 if __name__ == "__main__":
     app = App()
     app.mainloop()

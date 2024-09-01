@@ -33,14 +33,15 @@ def EQer0() :
 
     FileShowingBox = tk.StringVar(w)
 
+
     KValueString = tk.Label(w, text = "k值" , width = 25, height  = 2)
     optionList = []
-    value = tk.StringVar()
+    value = tk.StringVar(w)
     value.set(0)
     for i in range(27) :
         optionList.append(i)
-    KValue = tk.OptionMenu(w, value, *optionList) 
-
+    KValue = tk.OptionMenu(w, value, *optionList)
+    KValue.config(width = 8, height  = 2)
 
     bOfChooseFile = tk.Button(w, text = "上載密文檔案" , width = 15, height  = 2, command = uploadFile)
 
@@ -50,7 +51,7 @@ def EQer0() :
 
     KValue.grid(row = 1, column = 1)
     KValueString.grid(row = 1, column = 0)
-    tk.Label(w, text = "密文預覽", padx = 40, pady = 15, font = ('Times New Roman', 15, 'bold')).grid(row = 2, column = 0)
+    tk.Label(w, text = "密文預覽", padx = 40, pady = 15, font = ('Times New Roman', 15, 'bold')).grid(row = 0, column = 0)
 
     BOfProcess.grid(row = 4, column = 1)
     content.grid(row = 3, column = 0)
@@ -60,3 +61,8 @@ def EQer0() :
     w.mainloop()
 
 
+def info0() :
+    w = tk.Tk()
+    w.title("位移方法加密原理")
+    tk.Label(w, text = "把每一個字元變為編碼，均位移K位及取模26，再退回成文本\n\n編碼：\nA-Z (1-26)\n\n位移方法：\n（編碼 + K) mod 26", padx = 40, pady = 15, font = ('Times New Roman', 15, 'bold')).grid(row = 2)
+    w.mainloop()
