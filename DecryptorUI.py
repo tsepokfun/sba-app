@@ -3,6 +3,7 @@ import ALG
 import EncryptorUI
 import DecryptorUI
 from tkinter import filedialog
+import displayOriganalTextUI
 
 
 
@@ -23,11 +24,7 @@ def DQer0() :
     def hits() :
         global temp 
         a = ALG.pre_proess_word(temp)
-        print(a)
-        ttt = ""
-        for i in a.DictionaryMethodOriganArticle :
-            ttt += i
-        FileShowingBox.set(ttt)
+        displayOriganalTextUI.showresult0(a)
 
     w = tk.Tk()
     w.title("「位移加密法」字典法解密器")

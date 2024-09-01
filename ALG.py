@@ -13,7 +13,7 @@ for i in t :
     dictionary[i[:len(i) - 2].upper()] = rank
     rank += 1
     
-print("words in dictionary = "+str(len(dictionary)))
+##print("words in dictionary = "+str(len(dictionary)))
 #ditionary created
 #lot of same word
 #no hash collision
@@ -136,33 +136,24 @@ class pre_proess_word :
         self.w = w
         self.Asciiw = Return_WordToAscii(self.w)
         self.Vocabw = Return_CombinWordToVocab(self.Asciiw)
-        print(self.Asciiw)
+        #print(self.Asciiw)
         #Method00 dictionary
         t = Return_OriganalArticleDictionaryMethod(self.Asciiw) 
         self.DictionaryMethodOriganArticle = t[0]
         self.DictionaryMethodKValue = 26 - t[1]
         self.DictionaryMethodPossiblity = t[2]
+        #print(self.DictionaryMethodOriganArticle)
         #Method01 fequency
         self.wordFrequency = Return_wordFrequency(self.Asciiw)
         self.WordFrewuencyMethodKValue = Return_KWordFrewuencyMethod(self.Asciiw)
         self.WordFrewuencyMethodOriganArticle = Return_AsciiToPrintableWord(Return_AsciiNumberPuseK(self.Asciiw, self.WordFrewuencyMethodKValue))
-        print(self.WordFrewuencyMethodOriganArticle)
+        #print(self.WordFrewuencyMethodOriganArticle)
         
 
 a = pre_proess_word(["JGNNQ YQTNF"])
-print(a.DictionaryMethodOriganArticle)
+#print(a.DictionaryMethodPossiblity)
 
 """
 Sources:
 http://en.wiktionary.org/wiki/Wiktionary:Frequency_lists#Top_English_words_lists
-http://en.wiktionary.org/wiki/Wiktionary:Frequency_lists/PG/2005/08/1-10000
-http://en.wiktionary.org/wiki/Wiktionary:Frequency_lists/PG/2005/08/10001-20000
-http://en.wiktionary.org/wiki/Wiktionary:Frequency_lists/PG/2005/08/20001-30000
-http://en.wiktionary.org/wiki/Wiktionary:Frequency_lists/PG/2005/08/30001-40000
-http://en.wiktionary.org/wiki/Wiktionary:Frequency_lists/PG/2005/08/40001-50000
-http://en.wiktionary.org/wiki/Wiktionary:Frequency_lists/PG/2005/08/50001-60000
-http://en.wiktionary.org/wiki/Wiktionary:Frequency_lists/PG/2005/08/60001-70000
-http://en.wiktionary.org/wiki/Wiktionary:Frequency_lists/PG/2005/08/70001-80000
-http://en.wiktionary.org/wiki/Wiktionary:Frequency_lists/PG/2005/08/80001-90000
-http://en.wiktionary.org/wiki/Wiktionary:Frequency_lists/PG/2005/08/90001-100000
 """
