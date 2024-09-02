@@ -94,7 +94,7 @@ def EQer0() :
     KValueString.grid(row = 1, column = 0)
     tk.Label(w, text = "密文預覽", padx = 40, pady = 15, font = ('Times New Roman', 15, 'bold')).grid(row = 0, column = 0)
 
-    BOfProcess.grid(row = 4, column = 1)
+    #BOfProcess.grid(row = 4, column = 1)
     content.grid(row = 3, column = 0)
     bOfChooseFile.grid(row = 4 , column = 0, ipadx = '3', ipady = '3', padx = '10', pady = '20')
     tk.Button(w, text = "將密文覆寫於原檔", padx = 10, pady = 10, command = SaveF).grid(row = 5, column = 0)
