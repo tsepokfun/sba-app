@@ -6,11 +6,12 @@ from tkinter import filedialog
 import displayOriganalTextUI
 
 
-
 def DQer0() :
     temp = 0
-    def uploadFile () :
+    location = ""
+    def uploadFile() :
         global temp
+        global location
         location = filedialog.askopenfilename(filetypes=(("text", "*.txt"),)) 
         temp = 0
         temp = open(str(location), "r")
@@ -22,9 +23,18 @@ def DQer0() :
 
 
     def hits() :
-        global temp 
-        a = ALG.pre_proess_word(temp)
-        displayOriganalTextUI.showresult0(a)
+        global temp
+        global location
+        if location != "" :
+            a = ALG.pre_proess_word(temp)
+            displayOriganalTextUI.showresult0(a, location)
+        else :
+            t0 = tk.Tk()
+            t0.title("注意")
+            tk.Label(t0, text = "請上載密文檔案", padx = 40, pady = 15, font = ('Times New Roman', 15, 'bold')).grid(row = 1, column = 0)
+            t0.mainloop()
+
+
 
     w = tk.Tk()
     w.title("「位移加密法」字典法解密器")
@@ -33,7 +43,7 @@ def DQer0() :
 
 
 
-    bOfChooseFile = tk.Button(w, text = "上載密文檔案" , width = 15, height  = 2, command = uploadFile)
+    bOfChooseFile = tk.Button(w, text = "密文檔案上載" , width = 15, height  = 2, command = uploadFile)
 
     content = tk.Label(w, textvariable = FileShowingBox, width = 40, height = 8, bg = "white", justify = "left")
 
@@ -47,8 +57,10 @@ def DQer0() :
 
 def DQer1() :
     temp = 0
+    location = ""
     def uploadFile () :
         global temp
+        global location
         location = filedialog.askopenfilename(filetypes=(("text", "*.txt"),)) 
         temp = 0
         temp = open(str(location), "r")
@@ -60,13 +72,16 @@ def DQer1() :
 
 
     def hits() :
-        global temp 
-        a = ALG.pre_proess_word(temp)
-        print(a)
-        ttt = ""
-        for i in a.WordFrewuencyMethodOriganArticle :
-            ttt += i
-        FileShowingBox.set(ttt)
+        global temp
+        global location
+        if location != "" :
+            a = ALG.pre_proess_word(temp)
+            displayOriganalTextUI.showresult1(a, location)
+        else :
+            t0 = tk.Tk()
+            t0.title("注意")
+            tk.Label(t0, text = "請上載密文檔案", padx = 40, pady = 15, font = ('Times New Roman', 15, 'bold')).grid(row = 1, column = 0)
+            t0.mainloop()
 
     w = tk.Tk()
     w.title("「位移加密法」單字頻數法解密器")

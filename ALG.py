@@ -116,7 +116,10 @@ def Return_OriganalArticleDictionaryMethod (nul) : # as the name :) #in w type #
                         t += chr(k)
                     if t in dictionary :
                         vid += 1 
-        pboK.append(vid/v)
+        if v != 0 : 
+            pboK.append(vid/v)
+        else :
+            pboK.append(0)
     k = pboK.index(max(pboK))
     return [Return_AsciiToPrintableWord(Return_AsciiNumberPuseK(nul, k)), k, pboK]
 
@@ -140,7 +143,7 @@ class pre_proess_word :
         #Method00 dictionary
         t = Return_OriganalArticleDictionaryMethod(self.Asciiw) 
         self.DictionaryMethodOriganArticle = t[0]
-        self.DictionaryMethodKValue = 26 - t[1]
+        self.DictionaryMethodKValue = (26 - t[1]) % 26
         self.DictionaryMethodPossiblity = t[2]
         #print(self.DictionaryMethodOriganArticle)
         #Method01 fequency

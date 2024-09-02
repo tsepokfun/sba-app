@@ -20,7 +20,7 @@ class App(tk.Tk):
         self.current_frame = new_frame
         self.current_frame.pack()
 
-class StartPage(tk.Frame):
+class StartPage(tk.Frame): 
     def __init__(self, master):
         super().__init__(master)
         def hits0() :
