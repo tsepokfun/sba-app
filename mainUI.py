@@ -31,12 +31,18 @@ class StartPage(tk.Frame):
             DecryptorUI.DQer1()
         def hits3() :
             DecryptorUI.info1()
+        def hits4() :
+            DecryptorUI.DQer2()
+        def hits5() :
+            DecryptorUI.info2()
         tk.Label(self, text = "解密器", padx = 40, pady = 15, font = ('Times New Roman', 15, 'bold')).grid(row = 0, column = 1)
         tk.Button(self, text = "加密器", padx = 40, pady = 15, command = lambda: master.switch_frame(PageOne)).grid(row = 0, column = 0)
         tk.Button(self, text = "字典法解密", padx = 30, pady = 10, command = hits0).grid(row = 2, column = 1)
         tk.Button(self, text = "原理->", padx = 10, pady = 10, command = hits1).grid(row = 2, column = 0)
         tk.Button(self, text = "單字頻數法解密", padx = 15, pady = 10, command = hits2).grid(row = 3, column = 1)
-        tk.Button(self, text = "原理->", padx = 10, pady = 10, command = hits3).grid(row = 3, column = 0)
+        tk.Button(self, text = "原理->", padx = 10, pady = 10, command = hits4).grid(row = 3, column = 0)
+        tk.Button(self, text = "序列編號加密法解密", padx = 15, pady = 10, command = hits2).grid(row = 4, column = 1)
+        tk.Button(self, text = "原理->", padx = 10, pady = 10, command = hits5).grid(row = 4, column = 0)
 
         tk.Label(self, text = " ", padx = 40, pady = 15).grid(row = 1)
 
@@ -49,11 +55,17 @@ class PageOne(tk.Frame):
             EncryptorUI.EQer0()
         def hits1() :
             EncryptorUI.info0()
+        def hits2() :
+            EncryptorUI.EQer1()
+        def hits3() :
+            EncryptorUI.info1()
         tk.Label(self, text = "加密器", padx = 40, pady = 15,  font = ('Times New Roman', 15, 'bold')).grid(row = 0, column = 0)
         tk.Button(self, text  = "解密器", padx = 40, pady = 15, command = lambda: master.switch_frame(StartPage)).grid(row = 0, column = 1)
         tk.Label(self, text = " ", padx = 40, pady = 15).grid(row = 1)
         tk.Button(self, text = "位移方法加密", padx = 30, pady = 10, command = hits0).grid(row = 2, column = 0)
         tk.Button(self, text = "<-原理", padx = 10, pady = 10, command = hits1).grid(row = 2, column = 1)
+        tk.Button(self, text = "序列編號加密法加密", padx = 30, pady = 10, command = hits2).grid(row = 3, column = 0)
+        tk.Button(self, text = "<-原理", padx = 10, pady = 10, command = hits3).grid(row = 3, column = 1)
 if __name__ == "__main__":
     app = App()
     app.mainloop()

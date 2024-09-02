@@ -5,7 +5,7 @@ import DecryptorUI
 from tkinter import filedialog
 
 #ditionary create
-temp = open("wiki-100k.txt")
+temp = open("data/wiki-100k.txt")
 t = temp.readlines()
 rank = 0
 dictionary = {}
@@ -131,7 +131,37 @@ def Return_KWordFrewuencyMethod (nul) : # as the name :) #in w type #not null
     else :
         return 26 + k
 
+def Return_M2O (nul) :
+    count = 0
+    print(nul)
+    t = []
+    for i in nul :
+        tt = []
+        for j in i :
+            if type(j) == int :
+                tt.append(ord("A") + (j - ord("A") + count)%26)
+            else :
+                tt.append(j)
+            count += 1
+        t.append(tt)
+    print(t)
+    return t
 
+def Return_M2P (nul) :
+    count = 0
+    print(nul)
+    t = []
+    for i in nul :
+        tt = []
+        for j in i :
+            if type(j) == int :
+                tt.append(ord("A") + (j - ord("A") + count)%26)
+            else :
+                tt.append(j)
+            count -= 1
+        t.append(tt)
+    print(t)
+    return t
 
 class pre_proess_word :
     def __init__(self, w) :
@@ -151,9 +181,15 @@ class pre_proess_word :
         self.WordFrewuencyMethodKValue = Return_KWordFrewuencyMethod(self.Asciiw)
         self.WordFrewuencyMethodOriganArticle = Return_AsciiToPrintableWord(Return_AsciiNumberPuseK(self.Asciiw, self.WordFrewuencyMethodKValue))
         #print(self.WordFrewuencyMethodOriganArticle)
+        #Method0 sequence
+        self.M2O = Return_AsciiToPrintableWord(Return_M2O(self.Asciiw))
+        self.M2P = Return_AsciiToPrintableWord(Return_M2P(self.Asciiw))
+        print(self.M2O, self.M2P)
         
 
-a = pre_proess_word(["JGNNQ YQTNF"])
+        
+
+a = pre_proess_word(["TRY THIS", "HI"])
 #print(a.DictionaryMethodPossiblity)
 
 """

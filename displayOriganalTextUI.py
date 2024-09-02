@@ -133,4 +133,39 @@ def showresult1(pw, location0) :
 
     w.mainloop()
 
+def showresult2(pw, location0) :
+    def SelectFileToSave() :
+        global temp
+        location = filedialog.askopenfilename(filetypes=(("text", "*.txt"),)) 
+        temp = 0
+        temp = open(str(location), "w")
+        ttt = FileShowingBox.get()
+        for i in ttt :
+            temp.write(i)
+        temp.close()
+    def SaveF() :
+        global temp
+        temp = 0
+        temp = open(str(location0), "w")
+        ttt = FileShowingBox.get()
+        for i in ttt :
+            temp.write(i)
+        temp.close()
+    
+    w = tk.Tk()
+    w.title("解密結果")
+
+    FileShowingBox = tk.StringVar(w)
+
+    
+    FileShowingBox.set(pw.M2P)
+    content = tk.Label(w, textvariable = FileShowingBox, width = 40, height = 8, bg = "white", justify = "left")
+    tk.Button(w, text = "將明文覆寫於原檔", padx = 10, pady = 10, command = SaveF).grid(row = 5, column = 0)
+    tk.Button(w, text = "選擇儲存於其他檔案", padx = 10, pady = 10, command = SelectFileToSave).grid(row = 5, column = 1)
+    
+    tk.Label(w, text = "解密結果預覽", padx = 40, pady = 15, font = ('Times New Roman', 15, 'bold')).grid(row = 0, column = 0)
+    content.grid(row = 3, column = 0)
+
+    w.mainloop()
+
 

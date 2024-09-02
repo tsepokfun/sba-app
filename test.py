@@ -5,3 +5,4 @@ import DecryptorUI
 from tkinter import filedialog
 
 
+print(-1%26)
