@@ -33,6 +33,10 @@ def EQer0() :
         temp = 0
         temp = open(str(location), "r")
         temp = temp.readlines()
+        temp0 = []
+        for i in temp :
+            temp0.append(i.upper())
+        temp = temp0
         ttt = ""
         for i in temp :
             ttt += i

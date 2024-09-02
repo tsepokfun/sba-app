@@ -10,7 +10,7 @@ t = temp.readlines()
 rank = 0
 dictionary = {}
 for i in t :
-    dictionary[i[:len(i) - 2].upper()] = rank
+    dictionary[i.rstrip().upper()] = rank
     rank += 1
     
 ##print("words in dictionary = "+str(len(dictionary)))
