@@ -32,7 +32,7 @@ class StartPage(tk.Frame):
         def hits3() :
             DecryptorUI.info1()
         def hits4() :
-            DecryptorUI.DQer2()
+            DecryptorUI.info1()
         def hits5() :
             DecryptorUI.info2()
         tk.Label(self, text = "解密器", padx = 40, pady = 15, font = ('Times New Roman', 15, 'bold')).grid(row = 0, column = 1)
