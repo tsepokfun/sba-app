@@ -110,7 +110,7 @@ def DQer1() :
 
     w.mainloop()
 
-def DQer1() :
+def DQer2() :
     temp = 0
     location = ""
     def uploadFile () :
