@@ -4,160 +4,184 @@ import EncryptorUI
 import DecryptorUI
 from tkinter import filedialog
 import displayOriganalTextUI
+import chardet
 
-
-def DQer0() :
-    temp = 0
+def DQer0():
+    temp = []
     location = ""
-    def uploadFile() :
-        global temp
-        global location
+    
+    def uploadFile():
+        nonlocal temp, location
         location = filedialog.askopenfilename(filetypes=(("text", "*.txt"),)) 
-        temp = 0
-        temp = open(str(location), "r")
-        temp = temp.readlines()
-        temp0 = []
-        for i in temp :
-            temp0.append(i.upper())
+        temp = []
+        try:
+            # Detect the file encoding
+            with open(location, 'rb') as file:
+                raw_data = file.read()
+                result = chardet.detect(raw_data)
+                encoding = result['encoding']
+            
+            # Read the file with the detected encoding
+            with open(location, "r", encoding=encoding) as file:
+                temp = file.readlines()
+        except UnicodeDecodeError:
+            with open(location, "r", encoding="latin-1") as file:
+                temp = file.readlines()
+        
+        temp0 = [i.upper() for i in temp]
         temp = temp0
-        ttt = ""
-        for i in temp :
-            ttt += i
-        FileShowingBox.set(ttt)
+        ttt = "".join(temp)
+        # Updating Text widget content
+        FileShowingBox.delete(1.0, tk.END)
+        FileShowingBox.insert(tk.END, ttt)
 
-
-    def hits() :
-        global temp
-        global location
-        if location != "" :
+    def hits():
+        nonlocal temp, location
+        if location != "":
             a = ALG.pre_proess_word(temp)
             displayOriganalTextUI.showresult0(a, location)
-        else :
+        else:
             t0 = tk.Tk()
             t0.title("注意")
-            tk.Label(t0, text = "請上載密文檔案", padx = 40, pady = 15, font = ('Times New Roman', 15, 'bold')).grid(row = 1, column = 0)
+            tk.Label(t0, text="請上載密文檔案", padx=40, pady=15, font=('Times New Roman', 15, 'bold')).grid(row=1, column=0)
             t0.mainloop()
-
-
 
     w = tk.Tk()
     w.title("「位移加密法」字典法解密器")
 
-    FileShowingBox = tk.StringVar(w)
+    # Using Text widget instead of Label
+    FileShowingBox = tk.Text(w, width=40, height=8, bg="white", wrap=tk.WORD)
+    # Adding Scrollbar
+    scrollbar = tk.Scrollbar(w, command=FileShowingBox.yview)
+    FileShowingBox.config(yscrollcommand=scrollbar.set)
 
+    bOfChooseFile = tk.Button(w, text="密文檔案上載", width=15, height=2, command=uploadFile)
+    BOfProcess = tk.Button(w, text="解密", command=hits)
 
-
-    bOfChooseFile = tk.Button(w, text = "密文檔案上載" , width = 15, height  = 2, command = uploadFile)
-
-    content = tk.Label(w, textvariable = FileShowingBox, width = 40, height = 8, bg = "white", justify = "left")
-
-    BOfProcess = tk.Button(w, text = "解密", command = hits)
-    tk.Label(w, text = "密文預覽", padx = 40, pady = 15, font = ('Times New Roman', 15, 'bold')).grid(row = 1, column = 0)
-    BOfProcess.grid(row = 3, column = 1)
-    content.grid(row = 2, column = 0)
-    bOfChooseFile.grid(row = 3 , column = 0, ipadx = '3', ipady = '3', padx = '10', pady = '20')
+    tk.Label(w, text="密文預覽", padx=40, pady=15, font=('Times New Roman', 15, 'bold')).grid(row=1, column=0)
+    # Adjusting grid layout to include scrollbar
+    FileShowingBox.grid(row=2, column=0, columnspan=2)
+    scrollbar.grid(row=2, column=2, sticky='ns')
+    bOfChooseFile.grid(row=3, column=0, ipadx=3, ipady=3, padx=10, pady=20)
+    BOfProcess.grid(row=3, column=1)
 
     w.mainloop()
 
-def DQer1() :
-    temp = 0
+def DQer1():
+    temp = []
     location = ""
-    def uploadFile () :
-        global temp
-        global location
+    
+    def uploadFile():
+        nonlocal temp, location
         location = filedialog.askopenfilename(filetypes=(("text", "*.txt"),)) 
-        temp = 0
-        temp = open(str(location), "r")
-        temp = temp.readlines()
-        temp0 = []
-        for i in temp :
-            temp0.append(i.upper())
+        temp = []
+        try:
+            # Detect the file encoding
+            with open(location, 'rb') as file:
+                raw_data = file.read()
+                result = chardet.detect(raw_data)
+                encoding = result['encoding']
+            
+            # Read the file with the detected encoding
+            with open(location, "r", encoding=encoding) as file:
+                temp = file.readlines()
+        except UnicodeDecodeError:
+            with open(location, "r", encoding="latin-1") as file:
+                temp = file.readlines()
+        
+        temp0 = [i.upper() for i in temp]
         temp = temp0
-        ttt = ""
-        for i in temp :
-            ttt += i
-        FileShowingBox.set(ttt)
+        ttt = "".join(temp)
+        FileShowingBox.delete(1.0, tk.END)
+        FileShowingBox.insert(tk.END, ttt)
 
-
-    def hits() :
-        global temp
-        global location
-        if location != "" :
+    def hits():
+        nonlocal temp, location
+        if location != "":
             a = ALG.pre_proess_word(temp)
             displayOriganalTextUI.showresult1(a, location)
-        else :
+        else:
             t0 = tk.Tk()
             t0.title("注意")
-            tk.Label(t0, text = "請上載密文檔案", padx = 40, pady = 15, font = ('Times New Roman', 15, 'bold')).grid(row = 1, column = 0)
+            tk.Label(t0, text="請上載密文檔案", padx=40, pady=15, font=('Times New Roman', 15, 'bold')).grid(row=1, column=0)
             t0.mainloop()
 
     w = tk.Tk()
     w.title("「位移加密法」單字頻數法解密器")
 
-    FileShowingBox = tk.StringVar(w)
+    FileShowingBox = tk.Text(w, width=40, height=8, bg="white", wrap=tk.WORD)
+    scrollbar = tk.Scrollbar(w, command=FileShowingBox.yview)
+    FileShowingBox.config(yscrollcommand=scrollbar.set)
 
+    bOfChooseFile = tk.Button(w, text="上載密文檔案", width=15, height=2, command=uploadFile)
+    BOfProcess = tk.Button(w, text="解密", command=hits)
 
-
-    bOfChooseFile = tk.Button(w, text = "上載密文檔案" , width = 15, height  = 2, command = uploadFile)
-
-    content = tk.Label(w, textvariable = FileShowingBox, width = 40, height = 8, bg = "white", justify = "left")
-
-    BOfProcess = tk.Button(w, text = "解密", command = hits)
-    tk.Label(w, text = "密文預覽", padx = 40, pady = 15, font = ('Times New Roman', 15, 'bold')).grid(row = 1, column = 0)
-    BOfProcess.grid(row = 3, column = 1)
-    content.grid(row = 2, column = 0)
-    bOfChooseFile.grid(row = 3 , column = 0, ipadx = '3', ipady = '3', padx = '10', pady = '20')
+    tk.Label(w, text="密文預覽", padx=40, pady=15, font=('Times New Roman', 15, 'bold')).grid(row=1, column=0)
+    FileShowingBox.grid(row=2, column=0, columnspan=2)
+    scrollbar.grid(row=2, column=2, sticky='ns')
+    bOfChooseFile.grid(row=3, column=0, ipadx=3, ipady=3, padx=10, pady=20)
+    BOfProcess.grid(row=3, column=1)
 
     w.mainloop()
 
-def DQer2() :
-    temp = 0
+def DQer2():
+    temp = []
     location = ""
-    def uploadFile () :
-        global temp
-        global location
+    
+    def uploadFile():
+        nonlocal temp, location
         location = filedialog.askopenfilename(filetypes=(("text", "*.txt"),)) 
-        temp = 0
-        temp = open(str(location), "r")
-        temp = temp.readlines()
-        temp0 = []
-        for i in temp :
-            temp0.append(i.upper())
+        temp = []
+        try:
+            # Detect the file encoding
+            with open(location, 'rb') as file:
+                raw_data = file.read()
+                result = chardet.detect(raw_data)
+                encoding = result['encoding']
+            
+            # Read the file with the detected encoding
+            with open(location, "r", encoding=encoding) as file:
+                temp = file.readlines()
+        except UnicodeDecodeError:
+            with open(location, "r", encoding="latin-1") as file:
+                temp = file.readlines()
+        
+        temp0 = [i.upper() for i in temp]
         temp = temp0
-        ttt = ""
-        for i in temp :
-            ttt += i
-        FileShowingBox.set(ttt)
+        ttt = "".join(temp)
+        # Updating Text widget content
+        FileShowingBox.delete(1.0, tk.END)
+        FileShowingBox.insert(tk.END, ttt)
 
-
-    def hits() :
-        global temp
-        global location
-        if location != "" :
+    def hits():
+        nonlocal temp, location
+        if location != "":
             a = ALG.pre_proess_word(temp)
             displayOriganalTextUI.showresult2(a, location)
-        else :
+        else:
             t0 = tk.Tk()
             t0.title("注意")
-            tk.Label(t0, text = "請上載密文檔案", padx = 40, pady = 15, font = ('Times New Roman', 15, 'bold')).grid(row = 1, column = 0)
+            tk.Label(t0, text="請上載密文檔案", padx=40, pady=15, font=('Times New Roman', 15, 'bold')).grid(row=1, column=0)
             t0.mainloop()
 
     w = tk.Tk()
     w.title("「位移加密法」序列編號法解密器")
 
-    FileShowingBox = tk.StringVar(w)
+    # Using Text widget instead of Label
+    FileShowingBox = tk.Text(w, width=40, height=8, bg="white", wrap=tk.WORD)
+    # Adding Scrollbar
+    scrollbar = tk.Scrollbar(w, command=FileShowingBox.yview)
+    FileShowingBox.config(yscrollcommand=scrollbar.set)
 
+    bOfChooseFile = tk.Button(w, text="上載密文檔案", width=15, height=2, command=uploadFile)
+    BOfProcess = tk.Button(w, text="解密", command=hits)
 
-
-    bOfChooseFile = tk.Button(w, text = "上載密文檔案" , width = 15, height  = 2, command = uploadFile)
-
-    content = tk.Label(w, textvariable = FileShowingBox, width = 40, height = 8, bg = "white", justify = "left")
-
-    BOfProcess = tk.Button(w, text = "解密", command = hits)
-    tk.Label(w, text = "密文預覽", padx = 40, pady = 15, font = ('Times New Roman', 15, 'bold')).grid(row = 1, column = 0)
-    BOfProcess.grid(row = 3, column = 1)
-    content.grid(row = 2, column = 0)
-    bOfChooseFile.grid(row = 3 , column = 0, ipadx = '3', ipady = '3', padx = '10', pady = '20')
+    tk.Label(w, text="密文預覽", padx=40, pady=15, font=('Times New Roman', 15, 'bold')).grid(row=1, column=0)
+    # Adjusting grid layout to include scrollbar
+    FileShowingBox.grid(row=2, column=0, columnspan=2)
+    scrollbar.grid(row=2, column=2, sticky='ns')
+    bOfChooseFile.grid(row=3, column=0, ipadx=3, ipady=3, padx=10, pady=20)
+    BOfProcess.grid(row=3, column=1)
 
     w.mainloop()
 

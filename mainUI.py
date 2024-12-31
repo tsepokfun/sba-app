@@ -20,6 +20,8 @@ class App(tk.Tk):
         self.current_frame = new_frame
         self.current_frame.pack()
 
+
+
 class StartPage(tk.Frame): 
     def __init__(self, master):
         super().__init__(master)
@@ -67,6 +69,10 @@ class PageOne(tk.Frame):
         tk.Button(self, text = "<-原理", padx = 10, pady = 10, command = hits1).grid(row = 2, column = 1)
         tk.Button(self, text = "序列編號加密法加密", padx = 30, pady = 10, command = hits2).grid(row = 3, column = 0)
         tk.Button(self, text = "<-原理", padx = 10, pady = 10, command = hits3).grid(row = 3, column = 1)
+
+
+
+
 if __name__ == "__main__":
     app = App()
     app.mainloop()
