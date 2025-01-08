@@ -14,7 +14,7 @@ def showresult0(pw, location0):
             temp.write(ttt)
 
     def SaveF():
-        with open(location0, "w") as temp:
+        with open(location0, "w", encoding="utf-8") as temp:
             ttt = FileShowingBox.get(1.0, tk.END)
             temp.write(ttt)
 
@@ -74,7 +74,7 @@ def showresult1(pw, location0):
             temp.write(ttt)
 
     def SaveF():
-        with open(location0, "w") as temp:
+        with open(location0, "w", encoding="utf-8") as temp:
             ttt = FileShowingBox.get(1.0, tk.END)
             temp.write(ttt)
 
@@ -131,7 +131,7 @@ def showresult2(pw, location0):
             temp.write(ttt)
 
     def SaveF():
-        with open(location0, "w") as temp:
+        with open(location0, "w", encoding="utf-8") as temp:
             ttt = FileShowingBox.get(1.0, tk.END)
             temp.write(ttt)
 
