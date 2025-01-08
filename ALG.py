@@ -4,6 +4,15 @@ import EncryptorUI
 import DecryptorUI
 from tkinter import filedialog
 
+
+import gensim.downloader as api
+from gensim.models import Word2Vec
+import numpy as np
+from scipy.spatial import distance
+
+# Load a pre-trained word2vec model 
+wv = api.load("word2vec-google-news-300")
+
 #ditionary create
 temp = open("data/wiki-100k.txt")
 t = temp.readlines()
@@ -163,6 +172,54 @@ def Return_M2P (nul) :
     print(t)
     return t
 
+# --- Encryption ---
+
+def word2vsc_encrypt(ciphertext, key):
+    t = ''
+    for i in ciphertext :
+        if i != " " and i != "\n" :
+            for k in (wv[i] + wv[key]) :
+                t += str(k) + " "
+            t += "\n"
+        else :
+            t += i + "\n"
+    return t
+# --- Decryption ---
+def word2vsc_decrypt(ciphertext, key):
+    t = ''
+    for i in ciphertext :
+        if i != "" and i != " "  :
+            t += wv.similar_by_vector(list(map(float, i.split())) - wv[key], topn=1)[0][0] + " "
+        else :
+            t += " "
+    t = t.replace('   ', '\n')
+    t = t.replace('  ', '**')
+    t = t.replace(' ', '')
+    t = t.replace('**', ' ')
+    return t
+
+def process_encrypted_output(encrypted_output):
+    processed_text = ""
+    current_word = ""
+    for char in encrypted_output:
+        if char == " ":
+            try:
+                vector_representation = eval(current_word)
+                processed_text += str(vector_representation) + " " # Keep it as a string for decrypt
+            except (NameError, SyntaxError, TypeError):
+                processed_text += current_word + " "
+            current_word = ""
+        else:
+            current_word += char
+    if current_word:
+        try:
+            vector_representation = eval(current_word)
+            processed_text += str(vector_representation)
+        except (NameError, SyntaxError, TypeError):
+            processed_text += current_word
+
+    return processed_text
+
 class pre_proess_word :
     def __init__(self, w) :
         #text proess
@@ -185,14 +242,16 @@ class pre_proess_word :
         self.M2O = Return_AsciiToPrintableWord(Return_M2O(self.Asciiw))
         self.M2P = Return_AsciiToPrintableWord(Return_M2P(self.Asciiw))
         print(self.M2O, self.M2P)
-        
+        # Method2 word2vec
+        self.word2vscMethodOriganArticle = ""  # Placeholder, will be set after encryption/decryption
+        self.word2vscKValue = ""  # Placeholder for the key word
+    def set_word2vsc_results(self, decrypted_text, key_word):
+        self.word2vscMethodOriganArticle = decrypted_text
+        self.word2vscKValue = key_word
 
-        
 
-a = pre_proess_word(["TRY THIS", "HI"])
+
 #print(a.DictionaryMethodPossiblity)
-
 """
-Sources:
 http://en.wiktionary.org/wiki/Wiktionary:Frequency_lists#Top_English_words_lists
 """

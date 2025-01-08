@@ -37,6 +37,10 @@ class StartPage(tk.Frame):
             DecryptorUI.DQer2()
         def hits5() :
             DecryptorUI.info2()
+        def hits6() :
+            DecryptorUI.DQer3()
+        def hits7() :
+            DecryptorUI.info3()
         
         tk.Label(self, text = "解密器", padx = 40, pady = 15, font = ('Times New Roman', 15, 'bold')).grid(row = 0, column = 1)
         tk.Button(self, text = "加密器", padx = 40, pady = 15, command = lambda: master.switch_frame(PageOne)).grid(row = 0, column = 0)
@@ -46,6 +50,8 @@ class StartPage(tk.Frame):
         tk.Button(self, text = "原理->", padx = 10, pady = 10, command = hits3).grid(row = 3, column = 0)
         tk.Button(self, text = "序列編號加密法解密", padx = 15, pady = 10, command = hits4).grid(row = 4, column = 1)
         tk.Button(self, text = "原理->", padx = 10, pady = 10, command = hits5).grid(row = 4, column = 0)
+        tk.Button(self, text="word2vec解密", padx=15, pady=10, command=hits6).grid(row=5, column=1)
+        tk.Button(self, text="原理->", padx=10, pady=10, command=hits7).grid(row=5, column=0)
 
         tk.Label(self, text = " ", padx = 40, pady = 15).grid(row = 1)
 
@@ -62,6 +68,10 @@ class PageOne(tk.Frame):
             EncryptorUI.EQer1()
         def hits3() :
             EncryptorUI.info1()
+        def hits4() :
+            EncryptorUI.EQer2()
+        def hits5() :
+            EncryptorUI.info2()
         tk.Label(self, text = "加密器", padx = 40, pady = 15,  font = ('Times New Roman', 15, 'bold')).grid(row = 0, column = 0)
         tk.Button(self, text  = "解密器", padx = 40, pady = 15, command = lambda: master.switch_frame(StartPage)).grid(row = 0, column = 1)
         tk.Label(self, text = " ", padx = 40, pady = 15).grid(row = 1)
@@ -69,7 +79,8 @@ class PageOne(tk.Frame):
         tk.Button(self, text = "<-原理", padx = 10, pady = 10, command = hits1).grid(row = 2, column = 1)
         tk.Button(self, text = "序列編號加密法加密", padx = 30, pady = 10, command = hits2).grid(row = 3, column = 0)
         tk.Button(self, text = "<-原理", padx = 10, pady = 10, command = hits3).grid(row = 3, column = 1)
-
+        tk.Button(self, text="word2vec加密", padx=30, pady=10, command=hits4).grid(row=4, column=0)
+        tk.Button(self, text="<-原理", padx=10, pady=10, command=hits5).grid(row=4, column=1)
 
 
 
